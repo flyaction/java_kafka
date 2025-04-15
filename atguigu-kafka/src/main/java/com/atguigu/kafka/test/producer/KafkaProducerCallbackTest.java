@@ -20,6 +20,8 @@ public class KafkaProducerCallbackTest {
         //对生产的数据K,V进行序列化的操作
         configMap.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         configMap.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        //ACK应答模式 0 1 all
+        configMap.put(ProducerConfig.ACKS_CONFIG,"0");
 
         //创建生产者对象
         KafkaProducer<String, String> producer = new KafkaProducer<String,String>(configMap);
