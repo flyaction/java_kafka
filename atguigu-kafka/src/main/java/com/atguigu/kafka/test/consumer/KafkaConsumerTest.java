@@ -27,7 +27,7 @@ public class KafkaConsumerTest {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(configMap);
 
         //订阅主题
-        consumer.subscribe(Collections.singletonList("test"));
+        consumer.subscribe(Collections.singletonList("test1"));
 
         //从kafka中拉取数据
         while (true){
