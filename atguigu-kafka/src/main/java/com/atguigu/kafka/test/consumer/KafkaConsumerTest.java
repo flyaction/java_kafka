@@ -20,7 +20,7 @@ public class KafkaConsumerTest {
 
         // 创建消费者对象
         Map<String, Object> configMap = new HashMap<>();
-        configMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
+        configMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9091");
         configMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         configMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         configMap.put(ConsumerConfig.GROUP_ID_CONFIG,"atguigu");
