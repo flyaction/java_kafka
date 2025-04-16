@@ -14,7 +14,7 @@ import java.util.Objects;
  * @create: 2025/4/8 14:25
  **/
 public class KafkaProducerTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
 
         //创建配置对象
         Map<String, Object> configMap = new HashMap<>();
@@ -29,9 +29,10 @@ public class KafkaProducerTest {
         //ProducerRecord<String,String> record = new ProducerRecord<String, String>("test","key","value");
         //通过生产者对象将数据发送到kafka
         //producer.send(record);
-        for (int i = 0; i < 10; i++){
+        for (int i = 0; i < 1000; i++){
             ProducerRecord<String,String> record = new ProducerRecord<String, String>("test","key"+i,"value"+i);
             producer.send(record);
+            Thread.sleep(1000);
         }
 
 
