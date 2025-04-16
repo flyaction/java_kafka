@@ -23,7 +23,10 @@ public class KafkaConsumerTest {
         configMap.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
         configMap.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         configMap.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        configMap.put(ConsumerConfig.GROUP_ID_CONFIG,"atguigu");
+        configMap.put(ConsumerConfig.GROUP_ID_CONFIG,"atguigu1");
+        configMap.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG,"earliest");
+        //事务隔离级别  read_committed  read_uncommitted
+        configMap.put(ConsumerConfig.ISOLATION_LEVEL_CONFIG,"read_committed");
         KafkaConsumer<String, String> consumer = new KafkaConsumer<String, String>(configMap);
 
         //订阅主题

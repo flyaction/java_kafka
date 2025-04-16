@@ -50,7 +50,7 @@ public class KafkaProducerITransactionTest {
             //通过生产者对象将数据发送到kafka
             //producer.send(record);
             for (int i = 0; i < 20; i++){
-                ProducerRecord<String,String> record = new ProducerRecord<String, String>("test1","key"+i,"value"+i);
+                ProducerRecord<String,String> record = new ProducerRecord<String, String>("test","key"+i,"value"+i);
                 //异步发送
                 final Future<RecordMetadata> send = producer.send(record);
 
