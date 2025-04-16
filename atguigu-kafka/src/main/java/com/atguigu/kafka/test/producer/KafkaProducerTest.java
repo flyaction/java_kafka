@@ -30,7 +30,7 @@ public class KafkaProducerTest {
         //通过生产者对象将数据发送到kafka
         //producer.send(record);
         for (int i = 0; i < 1000; i++){
-            ProducerRecord<String,String> record = new ProducerRecord<String, String>("test","key"+i,"value"+i);
+            ProducerRecord<String,String> record = new ProducerRecord<String, String>("test",i%2,"key"+i,"value"+i);
             producer.send(record);
             Thread.sleep(1000);
         }
