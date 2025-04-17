@@ -1,0 +1,39 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      acks: all
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      retries: 0
+    consumer:
+      group-id: test #消费者组
+      #消费方式:在有提交记录的时候，earliest和latest是一样的,从提交记录的下一条开始消费
+      # earliest:无提交记录，从头开始消费
+      # latest:无提交记录，从最新的消息的下一条开始消费
+      auto-offset-reset: earliest
+      enable-auto-commit: true #是否自动提交偏移量
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 2
+      properties:
+        #如果在这个时间内没有收到心跳，该消费者会被踢出组并触发组再再平衡 rebalance
+        session.timeout.ms: 120000
+        #最大消费时间，此决定了获取消息后提交偏移量的最大时间，超过这个时间（默认五分钟）
+        max.poll.interval.ms: 300000
+        #配置控制器端等待请求响应的最长时间
+        request.timeout.ms: 60000
+        # 如果消费者组中没有消费者，则创建topic
+        allow.auto.create.topics: true
+        # 心跳时间 为 session.timeout.ms 的三分之一
+        heartbeat.interval.ms: 40000
+    listener:
+      missing-topics-fatal: true #如果topic不存在，是否抛出异常
+      type: batch
+      concurrency: 2 #配置多少，就为每个消费者实例创建多少个线程，多出分区的线程空闲
+    template:
+      default-topic: "test"
+server:
+  port: 7777
